@@ -65,6 +65,18 @@ describe('validator module', () => {
       expect(isObject('jbj')).toBeFalsy();
       expect(isObject(() => {})).toBeFalsy();
     });
+
+    it('properly tells if a value is a function', () => {
+      expect(isFunction(() => {})).toBeTruthy();
+      expect(isFunction(function(values) {console.log(values);})).toBeTruthy();
+      expect(isFunction(5)).toBeFalsy();
+      expect(isFunction(true)).toBeFalsy();
+      expect(isFunction(false)).toBeFalsy();
+      expect(isFunction([])).toBeFalsy(); 
+      expect(isFunction('jbj')).toBeFalsy();
+      expect(isFunction({})).toBeFalsy();
+    
+    });
     
   });
 
