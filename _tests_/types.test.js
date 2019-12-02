@@ -57,12 +57,11 @@ describe('validator module', () => {
 
     it('properly tells if a value is a object', () => {
       expect(isObject({})).toBeTruthy();
-      expect(isObject({})).toBeTruthy();
-      expect(isObject(['jbj', 1, []])).toBeTruthy();
-      expect(isObject([[], {}])).toBeTruthy();      expect(isObject(5)).toBeFalsy();
+      expect(isObject({ name: 'JBJ', age: 41 })).toBeTruthy();
+      expect(isObject(5)).toBeFalsy();
       expect(isObject(true)).toBeFalsy();
       expect(isObject(false)).toBeFalsy();
-      expect(isObject({})).toBeFalsy();
+      expect(isObject([])).toBeFalsy(); 
       expect(isObject('jbj')).toBeFalsy();
       expect(isObject(() => {})).toBeFalsy();
     });
