@@ -7,8 +7,9 @@ const {
   isFunction,
   castToNumber,
   castToString,
-  castToBoolean
-  // getCaster
+  castToBoolean,
+  castToArray,
+  getCaster
 } = require('../lib/types.js');
 
 describe('validator module', () => {
@@ -79,7 +80,7 @@ describe('validator module', () => {
       expect(isFunction({})).toBeFalsy();
     
     });
-    
+     
   });
 
   describe('casters', () => {
@@ -118,15 +119,28 @@ describe('validator module', () => {
       expect(castToBoolean({})).toEqual(true);
       expect(castToBoolean(() => {})).toEqual(true);
       expect(castToBoolean([4, 5, 6])).toEqual(true);
-
     });
 
-
+    it('can cast values to a array', () => {
+      expect(castToArray([])).toEqual([]);
+      expect(castToArray([1, 2, 4])).toEqual([1, 2, 4]);
+      expect(castToArray({ name: 'jbj', age: 41 })).toEqual(['jbj', 41]); 
+      expect(castToArray('JBJ')).toEqual(['JBJ']);
+      expect(castToArray(53)).toEqual([53]);
+      expect(castToArray(true)).toEqual(['true']);
+      // expect(castToArray(() => {})).toEqual([() => {}]);
+    }); 
+ 
+    it('throws if value is not castable to an array', () => {
+      expect(() => castToArray(() => {})).toThrowErrorMatchingSnapshot();
+    });
 
   });
 
-  // it('can get the right caster', () => {
-  //   expect(getCaster(Number)).toEqual(castToNumber);
-  //   expect(getCaster(Promise)).toBeNull();
-  // });
-}); 
+  it('can get the right caster', () => {
+    expect(getCaster(Number)).toEqual(castToNumber);
+    expect(getCaster(Boolean)).toEqual(castToBoolean);
+    expect(getCaster(String)).toEqual(castToString);
+    expect(getCaster(Promise)).toBeNull();
+  });
+})
