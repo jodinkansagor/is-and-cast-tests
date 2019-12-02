@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validator module casters throws if value is not castable to number 1`] = `"castToNumber is not defined"`;
+
+exports[`validator module casters throws if value is not castable to number 2`] = `"castToNumber is not defined"`;
