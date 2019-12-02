@@ -71,7 +71,7 @@ describe('validator module', () => {
 
     it('properly tells if a value is a function', () => {
       expect(isFunction(() => {})).toBeTruthy();
-      expect(isFunction(function(values) {console.log(values);})).toBeTruthy();
+      expect(isFunction(function(values) {return values;})).toBeTruthy();
       expect(isFunction(5)).toBeFalsy();
       expect(isFunction(true)).toBeFalsy();
       expect(isFunction(false)).toBeFalsy();
@@ -143,4 +143,4 @@ describe('validator module', () => {
     expect(getCaster(String)).toEqual(castToString);
     expect(getCaster(Promise)).toBeNull();
   });
-})
+});
