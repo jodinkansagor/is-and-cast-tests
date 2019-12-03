@@ -128,7 +128,6 @@ describe('validator module', () => {
       expect(castToArray('JBJ')).toEqual(['JBJ']);
       expect(castToArray(53)).toEqual([53]);
       expect(castToArray(true)).toEqual(['true']);
-      // expect(castToArray(() => {})).toEqual([() => {}]);
     }); 
  
     it('throws if value is not castable to an array', () => {
